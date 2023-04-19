@@ -50,3 +50,5 @@ php artisan serve
     - Throw message ketika error
 
 ## Fitur yang akan ditambahkan
+
+1. Kada tahu lagi

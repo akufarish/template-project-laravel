@@ -14,6 +14,7 @@
             <p>{{ $error }}</p>
         @endforeach
     @endif
+    <p>{{ Session::get("sukses") }}</p>
     <form action="/tambah" method="POST">
         @csrf
         <input type="text" name="nama" id="nama">

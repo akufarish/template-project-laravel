@@ -30,12 +30,12 @@ class LoginController extends Controller
             Session::flash("status", "gagal");
         }
 
-        return back()->with("message", "akun tidak ditemukan");
+        return back()->with("message", "akun tidak terdaftar");
     }
 
     public function success()
     {
-        return view("/dashboard", [
+        return view("welcome", [
             "title" => "dashboard"
         ]);
     }

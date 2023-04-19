@@ -29,6 +29,6 @@ class RegisterController extends Controller
         $user["password"] = Hash::make($user["password"]);
 
         User::create($user);
-        return redirect("/login")->with("sukses", "register berhasill");
+        return redirect("/login")->with("message", "register berhasill");
     }
 }

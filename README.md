@@ -45,7 +45,8 @@ php artisan serve
 3. Register
     - Validasi ketika input kosong
     - Validasi ketika akun sudah ada yang terdaftar
+4. Throw message
+    - Throw message ketika sukses
+    - Throw message ketika error
 
 ## Fitur yang akan ditambahkan
-
-1. Throw message error/sukses

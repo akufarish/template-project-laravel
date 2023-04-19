@@ -35,7 +35,7 @@ class MuridController extends Controller
         }
 
         Murid::create($user);
-        return redirect("/dashboard")->with("sukses", "data berhasil ditambahkan");
+        return redirect("/dashboard")->with("message", "data berhasil ditambahkan");
     }
 
     /**
@@ -76,7 +76,7 @@ class MuridController extends Controller
             "jurusan" => $request->jurusan,
         ]);
 
-        return redirect("/dashboard");
+        return redirect("/dashboard")->with("message", "Data berhasil diubah");
     }
 
     /**
@@ -88,6 +88,6 @@ class MuridController extends Controller
             Session::flash("session", "sukses");
             Session::flash("message", "data berhasil dihapus");
         }
-        return redirect("/dashboard")->with("message", "data berhasil dihapus");
+        return back()->with("message", "data berhasil dihapus");
     }
 }

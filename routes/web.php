@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MuridController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Murid;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,17 +18,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect("/login");
 });
 
-Route::get("/dashboard", function () {
-    return view("dashboard", [
-        "title" => "dashboard"
-    ]);
-})->middleware("IsLogin");
 
+Route::get("/dashboard", [MuridController::class, "show"])->middleware("IsLogin");
 Route::get("/login", [LoginController::class, "index"])->middleware(["guest"]);
 Route::post("/login", [LoginController::class, "DoLogin"]);
 Route::get("/register", [RegisterController::class, "index"])->middleware(["guest"]);
 Route::post("/register", [RegisterController::class, "DoRegister"]);
 Route::post("/logout", [LoginController::class, "DoLogout"]);
+Route::get("/tambah", [MuridController::class, "create"])->middleware("IsLogin");
+Route::post("/tambah", [MuridController::class, "store"]);
+Route::get("hapus/{murid:id}", [MuridController::class, "destroy"])->middleware("IsLogin");
+Route::get("/ubah/{murid:id}", [MuridController::class, "edit"])->middleware("IsLogin");
+Route::post("/ubah", [MuridController::class, "update"]);

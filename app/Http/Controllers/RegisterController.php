@@ -18,8 +18,12 @@ class RegisterController extends Controller
     public function DoRegister(Request $request)
     {
         $user = $request->validate([
-            "name" => "required",
+            "name" => "required|unique:users,name",
             "password" => "required"
+        ], [
+            "name.required" => "input nama tidak boleh kosong",
+            "password.required" => "input password tidak boleh kosong",
+            "name.unique" => "akun sudah terdaftar",
         ]);
 
         $user["password"] = Hash::make($user["password"]);

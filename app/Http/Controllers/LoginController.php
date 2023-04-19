@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Murid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -22,13 +24,20 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($user)) {
-            $request->session()->regenerate();
-            
+            $request->session()->regenerate(); 
             return redirect("/dashboard");
-        } 
+        } else {
+            Session::flash("status", "gagal");
+        }
 
+        return back()->with("message", "akun tidak ditemukan");
+    }
 
-        return back()->with("error");
+    public function success()
+    {
+        return view("/dashboard", [
+            "title" => "dashboard"
+        ]);
     }
 
     public function DoLogout(Request $request)

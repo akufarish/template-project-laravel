@@ -7,24 +7,22 @@
     <title>{{ $title }}</title>
 </head>
 <body>
-    <h1>Halaman login</h1>
+    <a href="/dashboard">Kembali</a>
+    <h3>Tambah data</h3>
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             <p>{{ $error }}</p>
         @endforeach
     @endif
-
-    @if (Session::has('status'))
-        <p>{{ Session::get('message') }}</p>
-    @endif
-    <form action="/login" method="POST">
+    <form action="/tambah" method="POST">
         @csrf
-        <input type="text" name="name" id="name">
+        <input type="text" name="nama" id="nama">
         <br>
-        <input type="password" name="password" id="password">
+        <input type="text" name="kelas" id="kelas">
         <br>
-        <button type="submit">Login</button>
-        <a href="/register">Belum punya akun?</a>
+        <input type="text" name="jurusan" id="jurusan">
+        <br>
+        <button type="submit">Tambah data</button>
     </form>
 </body>
 </html>

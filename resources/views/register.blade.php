@@ -8,6 +8,11 @@
 </head>
 <body>
     <h1>Halaman register</h1>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
     <form action="/register" method="POST">
         @csrf
         <input type="text" name="name" id="name">

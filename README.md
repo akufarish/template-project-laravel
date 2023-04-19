@@ -1,21 +1,51 @@
 ## How to use
 
-> run composer install `require composer installed`
+> pertama tama clone repo nya
+
+```
+git clone https://github.com/akufarish/template-project-laravel.git
+```
+
+> Lalu jalankan command composer install pasti kan composer sudah terinstall jika tidak bisa download terlebih dahulu [composer](https://getcomposer.org/Composer-Setup.exe)
 
 ```
 composer install
 ```
 
-> configure .env file
+> konfigurasi file .env
 
 ```
 cp .env.example .env
-change database setting
+ganti database pada DB_DATABASE=ganti value nya
 ```
 
-> run this command
+> lalu jalankan command ini
 
 ```
 php artisan key:generate
 php artisan migrate
 ```
+
+> run server nya
+
+```
+php artisan serve
+```
+
+## Fitur yang tersedia
+
+1. Crud
+    - Create
+    - Read
+    - Update
+    - Delete
+2. Login
+    - Validasi ketika input kosong
+    - Validasi ketika akun tidak terdaftar
+3. Register
+    - Validasi ketika input kosong
+    - Validasi ketika akun sudah ada yang terdaftar
+
+## Fitur yang akan ditambahkan
+
+1. Throw message error/sukses

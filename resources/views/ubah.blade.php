@@ -11,10 +11,13 @@
     <a href="/dashboard">kembali</a>
     <br>
     <br>
-    <form action="/ubah" method="POST">
+    <form action="/ubah" method="POST" enctype="multipart/form-data">
         @csrf
         @foreach ($murid as $murid)
             <input type="hidden" name="id" value="{{ $murid->id }}">
+            <input type="hidden" name="oldImage" value="{{ $murid->gambar }}">
+            <input type="file" name="gambar" id="gambar">
+            <br>
             <input type="text" name="nama" id="nama" value="{{ $murid->nama }}">
             <br>
             <br>

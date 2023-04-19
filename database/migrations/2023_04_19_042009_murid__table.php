@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create("murids", function (Blueprint $table) {
-            $table->id()->autoIncrement();
+            $table->id("id")->autoIncrement();
+            $table->string("gambar")->nullable();
             $table->string("nama");
             $table->string("kelas");
             $table->string("jurusan");

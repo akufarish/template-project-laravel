@@ -12,7 +12,8 @@ class Murid extends Model
     protected $fillable = [
         "nama",
         "kelas",
-        "jurusan"
+        "jurusan",
+        "gambar"
     ];
 
 }

@@ -35,6 +35,7 @@ php artisan serve
 ## Fitur yang tersedia
 
 1. Crud
+    - Store image
     - Create
     - Read
     - Update

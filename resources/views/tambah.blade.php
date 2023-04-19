@@ -14,9 +14,11 @@
             <p>{{ $error }}</p>
         @endforeach
     @endif
-    <p>{{ Session::get("sukses") }}</p>
-    <form action="/tambah" method="POST">
+    <p>{{ Session::get("message") }}</p>
+    <form action="/tambah" method="POST" enctype="multipart/form-data">
         @csrf
+        <input type="file" name="gambar" id="gambar" >
+        <br>
         <input type="text" name="nama" id="nama">
         <br>
         <input type="text" name="kelas" id="kelas">

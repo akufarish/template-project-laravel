@@ -22,7 +22,10 @@
             $i = 1
         @endphp
         @foreach ($murid as $murid)
-            <li>{{ $i++ }}.{{ $murid->nama }} | <a href="/ubah/{{ $murid->id }}">Ubah data</a> <a href="/hapus/{{ $murid->id }}">Hapus data</a></li>
+            <li>{{ $i++ }}.
+                <br>
+                <img width="80" src="{{ asset("storage/". $murid->gambar) }}" alt="">
+                {{ $murid->nama }} | <a href="/ubah/{{ $murid->id }}">Ubah data</a> <a href="/hapus/{{ $murid->id }}">Hapus data</a></li>
         @endforeach
     </ul>
 

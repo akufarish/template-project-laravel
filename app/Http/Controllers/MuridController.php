@@ -6,6 +6,7 @@ use App\Models\Murid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MuridController extends Controller
 {
@@ -25,10 +26,15 @@ class MuridController extends Controller
     public function store(Request $request)
     {
         $user = $request->validate([
+            "gambar" => "image|file|max:2048",
             "nama" => "required",
             "kelas" => "required",
             "jurusan" => "required"
         ]);
+
+        if($request->file("gambar")) {
+            $user["gambar"] = $request->file("gambar")->store("img");
+        } 
 
         if(empty($user["nama"]) && empty($user["kelas"]) && empty($user["jurusan"])) {
             return redirect("/tambah")->with("gagal", "gagal menambah data");
@@ -67,14 +73,24 @@ class MuridController extends Controller
     /**
      * Update the resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, Murid $murid)
     {
 
-        DB::table("murids")->where("id", $request->id)->update([
-            "nama" => $request->nama,
-            "kelas" => $request->kelas,
-            "jurusan" => $request->jurusan,
+        $user = $request->validate([
+            "gambar" => "image|file|max:2048",
+            "nama" => "required",
+            "kelas" => "required",
+            "jurusan" => "required"
         ]);
+
+        if($request->file("gambar")) {
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $user["gambar"] = $request->file("gambar")->store("img");
+        }
+        
+        Murid::where("id", $request->id)->update($user);
 
         return redirect("/dashboard")->with("message", "Data berhasil diubah");
     }
@@ -84,7 +100,10 @@ class MuridController extends Controller
      */
     public function destroy(Murid $murid)
     {
-        if($murid->delete()) {
+        if($murid->destroy($murid->id)) {
+            if($murid->gambar) {
+                Storage::delete($murid->gambar);
+            }
             Session::flash("session", "sukses");
             Session::flash("message", "data berhasil dihapus");
         }
